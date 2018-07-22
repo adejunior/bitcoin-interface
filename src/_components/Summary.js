@@ -10,24 +10,24 @@ export class Summary extends Component {
                 <div className="container">
                     <div className="row pt-5">
                         <div className="col-md">
-                             <Quote typeName="Sell" typeOperation="sell"/>                                            
-                        </div>
-                    </div>   
-                    <div className="row pt-5">
-                        <div className="col-md">
-                        <Quote typeName="Buy" typeOperation="buy"/>
+                        <Quote typeName="Buys" typeOperation="buy"/>
                         </div>
                     </div>
                     <div className="row pt-5">
                         <div className="col-md">
-                            <TopFive typeOperation="sell"/>
+                             <Quote typeName="Sales" typeOperation="sell"/>                                            
                         </div>
-                    </div>
+                    </div> 
                     <div className="row pt-5">
                         <div className="col-md">
-                            <TopFive typeOperation="buy"/>
+                            <TopFive typeName="Buys" typeOperation="buy"/>
                         </div>
-                    </div>
+                    </div>                     
+                    <div className="row pt-5">
+                        <div className="col-md">
+                            <TopFive typeName="Sales" typeOperation="sell"/>
+                        </div>
+                    </div>                    
                     <div className="row pt-5">
                         <div className="col-md">
                             <QuoteVariationChart/>

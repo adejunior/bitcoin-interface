@@ -7,7 +7,8 @@ export class Quote extends Component {
         this.state = {
             median: '',
             average: '',
-            deviation: ''
+            deviation: '',
+            error: ''
         }
     }
 
@@ -16,26 +17,39 @@ export class Quote extends Component {
         .then( res => {
             this.setState({average: res.data });
         })
+        .catch(
+            error => {
+                this.setState({error: error.message})
+            })
 
         quoteService.median(this.props.typeOperation)
         .then( res => {
             this.setState({median: res.data });
         })
+        .catch(
+            error => {
+                this.setState({error: error.message})
+            })
 
         quoteService.deviation(this.props.typeOperation)
         .then( res => {
             this.setState({deviation: res.data });
         })
+        .catch(
+            error => {
+                this.setState({error: error.message})
+            })
     }
 
     render() {
-        const { average, median, deviation } = this.state;
+        const { average, median, deviation, error } = this.state;
         return (
             <div className="card">
                 <div className="card-header">
-                    Quote {this.props.typeName}
+                    <h3>Quote: {this.props.typeName}</h3>
                 </div>
                 <div className="card-body">
+                    {error == false ?
                     <div className="card-deck">              
                         <div className="card text-white bg-dark mb-3" style={{minWidth: 10 + 'em'}}>
                             <div className="card-header">Average</div>
@@ -56,6 +70,7 @@ export class Quote extends Component {
                             </div>
                         </div>
                     </div>
+                    : <h3>{error}</h3> }
                 </div>
             </div>
             

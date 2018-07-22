@@ -8,7 +8,8 @@ export class QuoteVariationChart extends Component {
     constructor(props){
         super(props);
         this.state = {
-            data: []
+            data: [],
+            error: ''
         };   
            
     }
@@ -18,44 +19,69 @@ export class QuoteVariationChart extends Component {
         quoteService.all()
         .then( res => {
             this.setState({data: res.data});
-        })        
+        })
+        .catch(
+            error => {
+                this.setState({error: error.message})
+            })        
     }
     
     render() {
-        const { data } = this.state;        
+        const { data, error } = this.state;        
         const dataBuy = data.filter(x => x.type === 'buy').map(buy => ({x: new Date(buy.date), y: buy.price}));
-        const dataSell = data.filter(x => x.type === 'sell').map(sell => ({x: new Date(sell.date), y: sell.price, label: sell.type}));
+        const dataSell = data.filter(x => x.type === 'sell').map(sell => ({x: new Date(sell.date), y: sell.price}));
 
         const options = {
 			animationEnabled: true,
             zoomEnabled: true,
 			title:{
-				text: "Quote BitCoin"
+				text: "Varition Buy x Sales"
+			},
+            legend: {
+				cursor: "pointer"				
 			},
             axisX: {
 				title: "Dates"
 			},
 			axisY: {
 				title: "Buy",
-				prefix: "$",
-				includeZero: false
+                titleFontColor: "blue",
+				lineColor: "blue",
+				labelFontColor: "blue",
+				tickColor: "blue",
+				includeZero: false,
+                showInLegend: true,
+                valueFormatString: "####"
 			},
             axisY2: {
 				title: "Sales",
-				prefix: "$",
-				includeZero: false
+                titleFontColor: "red",
+				lineColor: "red",
+				labelFontColor: "red",
+				tickColor: "red",
+				includeZero: false,
+                showInLegend: true,
+                valueFormatString: "####"
 			},
 			data: [{
 				type: "spline",
-				dataPoints: dataBuy
+                lineColor:"blue",
+				dataPoints: dataBuy,
+                yValueFormatString: "####.##",
 			},{
 				type: "spline",
                 axisYType: "secondary",
+                lineColor:"red",
+                yValueFormatString: "####.##",
 				dataPoints: dataSell}]
 		}
 
         return (
-            <CanvasJSChart options = {options}/>
+            <div>
+            {error == false ?
+                <CanvasJSChart options = {options}/>
+                : <h3>Chart: {error}</h3> }
+            </div>
         );
     }
 }
