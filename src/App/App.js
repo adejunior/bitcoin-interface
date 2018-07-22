@@ -6,7 +6,7 @@ export const App = () => {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Welcome to Quote BitCoin</h1>
+          <h1 className="App-title">Welcome to Quote Trades BitCoin</h1>
         </header>
         
         <Summary/>   
