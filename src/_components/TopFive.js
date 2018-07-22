@@ -30,7 +30,7 @@ export class TopFive extends Component {
                 <div className="card-header">
                     <h3> Quote Top Five: {this.props.typeName} </h3>
                 </div>
-                {error == false ?
+                {!error ?
                 <ReactTable data={data}
                     columns={[
                         {

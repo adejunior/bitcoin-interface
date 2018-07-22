@@ -49,9 +49,9 @@ export class Quote extends Component {
                     <h3>Quote: {this.props.typeName}</h3>
                 </div>
                 <div className="card-body">
-                    {error == false ?
+                    {!error ?
                     <div className="card-deck">              
-                        <div className="card text-white bg-dark mb-3" style={{minWidth: 10 + 'em'}}>
+                        <div className="card text-white bg-secondary mb-3" style={{minWidth: 10 + 'em'}}>
                             <div className="card-header">Average</div>
                             <div className="card-body">
                                 <h5 className="card-title">{average}</h5>
@@ -63,7 +63,7 @@ export class Quote extends Component {
                                 <h5 className="card-title">{median}</h5>
                             </div>
                         </div>
-                        <div className="card text-white bg-dark mb-3" style={{minWidth: 10 + 'em'}}>
+                        <div className="card text-white bg-secondary mb-3" style={{minWidth: 10 + 'em'}}>
                             <div className="card-header">Deviation</div>
                             <div className="card-body">
                                 <h5 className="card-title">{deviation}</h5>

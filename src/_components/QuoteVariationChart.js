@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { quoteService } from '../_service';
 const CanvasJSReact = require('../canvasjs.react');
-const CanvasJS = CanvasJSReact.CanvasJS;
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export class QuoteVariationChart extends Component {
@@ -11,11 +10,9 @@ export class QuoteVariationChart extends Component {
             data: [],
             error: ''
         };   
-           
     }
 
     componentWillMount() {
-        const chart = this.chart;
         quoteService.all()
         .then( res => {
             this.setState({data: res.data});
@@ -78,7 +75,7 @@ export class QuoteVariationChart extends Component {
 
         return (
             <div>
-            {error == false ?
+            {!error ?
                 <CanvasJSChart options = {options}/>
                 : <h3>Chart: {error}</h3> }
             </div>
