@@ -6,6 +6,11 @@ Interface quote BitCoin for demonstration trades.
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
+### View bitcoin trading data:
+- Top five sales and purchases.
+- Average, median and standard derivation.
+- Variation Chart.
+
 ### Prerequisites
 
 ```
@@ -19,10 +24,6 @@ To run the application through npm:
 ```
 npm start
 ```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
