@@ -14,15 +14,15 @@ export class Quote extends Component {
     }
 
     componentWillMount() {
-        function getAverage(typeOperation) {
+        const getAverage = (typeOperation) => {
             return quoteService.average(typeOperation);
-        }
+        };
 
-        function getMedian(typeOperation) {
+        const getMedian = (typeOperation) => {
             return quoteService.median(typeOperation);
         }
 
-        function getDeviation(typeOperation) {
+        const getDeviation = (typeOperation) => {
             return quoteService.deviation(typeOperation);
         }
 
