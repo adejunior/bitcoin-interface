@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { quoteService } from '../_service'
+import { quoteService } from '../_service';
+import axios from 'axios';
 
 export class Quote extends Component {
     constructor(props){
@@ -13,32 +14,30 @@ export class Quote extends Component {
     }
 
     componentWillMount() {
-        quoteService.average(this.props.typeOperation)
-        .then( res => {
-            this.setState({average: res.data });
-        })
-        .catch(
-            error => {
-                this.setState({error: error.message})
-            })
+        const getAverage = (typeOperation) => {
+            return quoteService.average(typeOperation);
+        };
 
-        quoteService.median(this.props.typeOperation)
-        .then( res => {
-            this.setState({median: res.data });
-        })
-        .catch(
-            error => {
-                this.setState({error: error.message})
-            })
+        const getMedian = (typeOperation) => {
+            return quoteService.median(typeOperation);
+        }
 
-        quoteService.deviation(this.props.typeOperation)
-        .then( res => {
-            this.setState({deviation: res.data });
-        })
-        .catch(
-            error => {
-                this.setState({error: error.message})
-            })
+        const getDeviation = (typeOperation) => {
+            return quoteService.deviation(typeOperation);
+        }
+
+        axios.all([getAverage(this.props.typeOperation), 
+                   getMedian(this.props.typeOperation),
+                   getDeviation(this.props.typeOperation)])
+             .then(axios.spread( (average, median, deviation) => {
+                this.setState({average: average.data });
+                this.setState({median: median.data });
+                this.setState({deviation: deviation.data });
+                }))
+             .catch(
+                error => {
+                    this.setState({error: error.message})
+                });
     }
 
     render() {
