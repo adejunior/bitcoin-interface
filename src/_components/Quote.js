@@ -29,15 +29,15 @@ export class Quote extends Component {
         axios.all([getAverage(this.props.typeOperation), 
                    getMedian(this.props.typeOperation),
                    getDeviation(this.props.typeOperation)])
-        .then(axios.spread( (average, median, deviation) => {
-            this.setState({average: average.data });
-            this.setState({median: median.data });
-            this.setState({deviation: deviation.data });
-        }))
-        .catch(
-            error => {
-                this.setState({error: error.message})
-            });
+             .then(axios.spread( (average, median, deviation) => {
+                this.setState({average: average.data });
+                this.setState({median: median.data });
+                this.setState({deviation: deviation.data });
+                }))
+             .catch(
+                error => {
+                    this.setState({error: error.message})
+                });
     }
 
     render() {
